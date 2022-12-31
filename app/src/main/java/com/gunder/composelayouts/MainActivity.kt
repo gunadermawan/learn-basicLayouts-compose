@@ -1,5 +1,6 @@
 package com.gunder.composelayouts
 
+import android.graphics.Paint.Align
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,11 +9,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,6 +36,7 @@ class MainActivity : ComponentActivity() {
                     Card("Guna Dermawan")
                 }
             }
+            TryScaffold()
         }
     }
 }
@@ -77,6 +77,33 @@ fun Card(name: String, modifier: Modifier = Modifier) {
         Column(modifier = Modifier.weight(1f)) {
             Text(text = "Guna Dermawan", fontWeight = FontWeight.Bold)
             Text(text = "Online ")
+        }
+    }
+}
+
+@Composable
+fun TryScaffold() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "My Scaffold")
+                },
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {}) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "fab button add")
+            }
+        },
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Hello World!")
         }
     }
 }
