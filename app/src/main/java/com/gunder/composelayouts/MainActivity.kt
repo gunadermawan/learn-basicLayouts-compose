@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
@@ -30,10 +32,9 @@ class MainActivity : ComponentActivity() {
             ComposeLayoutsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-                    Card()
+                    Card("Guna Dermawan")
                 }
             }
         }
@@ -41,10 +42,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-@Preview(showBackground = true)
-fun Card() {
+fun Card(name: String, modifier: Modifier = Modifier) {
     Row(
-        modifier = Modifier.padding(8.dp),
+        modifier = modifier
+            .padding(4.dp)
+            .fillMaxWidth()
+            .clickable(onClick = {}),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box {
@@ -54,16 +57,24 @@ fun Card() {
                 modifier = Modifier
                     .size(60.dp)
                     .clip(CircleShape)
+                    .border(
+                        2.dp, Color.Green, CircleShape
+                    )
+                    .size(
+                        60.dp
+                    )
             )
             Icon(
                 imageVector = Icons.Default.CheckCircle,
                 contentDescription = "check circle",
                 tint = Color.Green,
-                modifier = Modifier.align(Alignment.BottomEnd)
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .offset(x = 8.dp, y = 30.dp)
             )
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Column {
+        Column(modifier = Modifier.weight(1f)) {
             Text(text = "Guna Dermawan", fontWeight = FontWeight.Bold)
             Text(text = "Online ")
         }
